@@ -16,7 +16,9 @@ def main():
         "folder", help="Plugins folder for which direct dependencies will be loaded"
     )
 
-    parser.add_argument("--bin", default="all", help="Location of .dlls")
+    parser.add_argument(
+        "--bin", default="all", help="Location of .dlls, typically 3rdparty folder"
+    )
     parser.add_argument(
         "--dest",
         default="dependency",
@@ -77,6 +79,3 @@ def main():
     except RuntimeError as e:
         print("Error: {}".format(e))
         sys.exit(1)
-
-
-main()
