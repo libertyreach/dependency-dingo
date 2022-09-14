@@ -53,11 +53,7 @@ def main():
             dependencies += imports
             dependencies = StringUtils.uniqueCaseInsensitive(dependencies, sort=True)
 
-            # Verify that the module has at least one dependency
-            # if len(dependencies) > 0:
-            #    for dll in dependencies:
-
-            # walk and search
+        # walk and search
         copy_from = []
         copy_to = []
         print("Searching in", args.bin, "for dependencies.")
