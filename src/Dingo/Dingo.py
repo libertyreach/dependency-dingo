@@ -28,8 +28,12 @@ def main():
     if len(sys.argv) < 2:
         parser.print_help()
         sys.exit(0)
+
     # Parse the supplied command-line arguments
     args = parser.parse_args()
+    if not args.dest or not args.bin or not args.folder:
+        parser.print_help()
+        sys.exit(0)
     try:
         print("Locating dependencies, please wait...")
         # Ensure the module path is an absolute path
