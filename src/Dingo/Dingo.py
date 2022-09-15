@@ -5,11 +5,12 @@ import shutil
 import itertools
 import logging as log
 
+
 def intersection(lst1, lst2):
     return list(set(lst1) & set(lst2))
 
 
-def search(plugins_folder, source_folders, destination_folder, verbose = False)
+def search(plugins_folder, source_folders, destination_folder, verbose=False):
     try:
         log.info("Locating dependencies, please wait...")
         # Ensure the module path is an absolute path
@@ -33,7 +34,7 @@ def search(plugins_folder, source_folders, destination_folder, verbose = False)
         copy_from = []
         copy_to = []
         for folder in source_folders:
-            log.info("Searching in" ,folder,"for dependencies.")
+            log.info("Searching in", folder, "for dependencies.")
             for (
                 root,
                 dirs,
@@ -53,6 +54,7 @@ def search(plugins_folder, source_folders, destination_folder, verbose = False)
         log.error("Error: {}".format(e))
         sys.exit(1)
 
+
 def main():
     # Our supported command-line arguments
     parser = argparse.ArgumentParser()
@@ -61,10 +63,12 @@ def main():
         default="D:/plugins",
         help="Plugins folder for which direct dependencies will be loaded, typically plugins folder",
     )
-    parser.add_argument("-v", dest="verbose", default=False,help="Print verbose output")
+    parser.add_argument(
+        "-v", dest="verbose", default=False, help="Print verbose output"
+    )
     parser.add_argument(
         "-s",
-        dest = "search",
+        dest="search",
         default="D:/3rdparty",
         help="Location of .dlls, typically 3rdparty folder",
     )
@@ -88,7 +92,7 @@ def main():
         log.info("Verbose output.")
     else:
         log.basicConfig(format="%(levelname)s: %(message)s")
-    
+
     args.folder = os.path.abspath(args.folder)
     args.dest = os.path.abspath(args.dest)
     args.bin = os.path.abspath(args.bin)
@@ -96,8 +100,6 @@ def main():
     sys.path.insert(0, args.dest + "/..")
 
     search(args.folder, args.search, args.dest, args.verbose)
-
-
 
 
 if __name__ == "__main__":
