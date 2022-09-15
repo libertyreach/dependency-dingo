@@ -4,19 +4,22 @@ DependencyDingo is a Python library for helping Liberty Reach engineers resolve 
 
 Given a directory to use, a list of directories to search, and a destination directory, it will gather a list of secondary dependencies for each .dll in the given folder, then it will proceed to search the `search` directories recursively for the required dependencies.
 
-## Installation
+## Building and Installation
 
 ```bash
 git clone https://github.com/libertyreach/dependency-dingo.git
 cd dependency-dingo
-pip install -i requirements.txt
+py -m pip install --upgrade pip
+py -m pip install --upgrade build
+py -m build
+pip install dist\Dingo-0.0.2-tar.gz
 ```
 
 ## Usage
 
 ```bash
 cd vguide\Application\Executable
-python Dingo.py -s "D:\3rdparty" "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin" -v --dest dependency plugins
+dingo -s "D:\3rdparty" "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin" -v --dest dependency plugins
 
 ```
 
