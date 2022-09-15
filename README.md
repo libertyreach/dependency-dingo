@@ -12,16 +12,19 @@ pip install -i requirements.txt
 
 ```bash
 cd vguide\Application\Executable
-python Dingo.py --bin "D:\3rdparty" --dest "dependency" "plugins"
+python Dingo.py -s "D:\3rdparty" "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin" -v --dest dependency plugins
+
 ```
-```bash
-usage: Dingo.py [-h] [--bin BIN] [--dest DEST] folder
+usage: Dingo.py [-h] [-v] [-s SEARCH [SEARCH ...]] [--dest DEST] folder
 
 positional arguments:
-  folder       Plugins folder for which direct dependencies will be loaded
+  folder                Plugins folder for which direct dependencies will be loaded, typically plugins folder
 
 options:
-  -h, --help   show this help message and exit
-  --bin BIN    Location of .dlls
-  --dest DEST  Folder location to copy dependency .dlls into
+  -h, --help            show this help message and exit
+  -v                    Print verbose output (default: False)
+  -s SEARCH [SEARCH ...]
+                        Location of .dlls, typically 3rdparty folder
+  --dest DEST           Folder location to copy dependency .dlls into, typically dependency
+
 ```
