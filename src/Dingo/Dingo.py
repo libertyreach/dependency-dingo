@@ -22,7 +22,7 @@ def search(plugins_folder, source_folders, destination_folder, verbose=False):
 
         dependencies = []
         for plugin in plugins:
-            log.info("Finding dependencies for" + plugin)
+            log.info("Finding dependencies for " + plugin)
             # Parse the PE header for the module
             header = ModuleHeader(plugin)
             architecture = header.getArchitecture()
@@ -34,7 +34,7 @@ def search(plugins_folder, source_folders, destination_folder, verbose=False):
         copy_from = []
         copy_to = []
         for folder in source_folders:
-            log.info("Searching in", folder, "for dependencies.")
+            log.info("Searching in " + folder + " for dependencies.")
             for (
                 root,
                 dirs,
@@ -45,10 +45,10 @@ def search(plugins_folder, source_folders, destination_folder, verbose=False):
                     if "Qt" not in item:
                         copy_from.append(os.path.join(root, item))
                         copy_to.append(os.path.join(destination_folder, item))
-            log.info("Copying into", destination_folder)
+            log.info("Copying into " + destination_folder)
         for src, dst in zip(copy_from, copy_to):
             shutil.copy(src, dst)
-            log.info(src, "->", dst)
+            log.info(src + " -> " + dst)
 
     except RuntimeError as e:
         log.error("Error: {}".format(e))
@@ -64,13 +64,18 @@ def main():
         help="Plugins folder for which direct dependencies will be loaded, typically plugins folder",
     )
     parser.add_argument(
-        "-v", dest="verbose", default=False, help="Print verbose output"
+        "-v",
+        dest="verbose",
+        default=False,
+        help="Print verbose output",
+        action=argparse.BooleanOptionalAction,
     )
     parser.add_argument(
         "-s",
         dest="search",
-        default="D:/3rdparty",
         help="Location of .dlls, typically 3rdparty folder",
+        action="append",
+        nargs="+",
     )
     parser.add_argument(
         "--dest",
@@ -84,22 +89,22 @@ def main():
 
     # Parse the supplied command-line arguments
     args = parser.parse_args()
-    if not args.dest or not args.bin or not args.folder:
+    if not args.dest or not args.search or not args.folder:
         parser.print_help()
         sys.exit(0)
     if args.verbose:
         log.basicConfig(format="%(levelname)s: %(message)s", level=log.DEBUG)
-        log.info("Verbose output.")
     else:
         log.basicConfig(format="%(levelname)s: %(message)s")
 
     args.folder = os.path.abspath(args.folder)
     args.dest = os.path.abspath(args.dest)
-    args.bin = os.path.abspath(args.bin)
+    tmp_search = []
+    for s in itertools.chain(*args.search):
+        tmp_search.append(os.path.abspath(s))
     sys.path.insert(0, args.dest)
     sys.path.insert(0, args.dest + "/..")
-
-    search(args.folder, args.search, args.dest, args.verbose)
+    search(args.folder, tmp_search, args.dest, args.verbose)
 
 
 if __name__ == "__main__":
