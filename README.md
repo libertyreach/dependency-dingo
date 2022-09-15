@@ -15,6 +15,7 @@ cd vguide\Application\Executable
 python Dingo.py -s "D:\3rdparty" "C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.1\bin" -v --dest dependency plugins
 
 ```
+```
 usage: Dingo.py [-h] [-v] [-s SEARCH [SEARCH ...]] [--dest DEST] folder
 
 positional arguments:
@@ -26,5 +27,4 @@ options:
   -s SEARCH [SEARCH ...]
                         Location of .dlls, typically 3rdparty folder
   --dest DEST           Folder location to copy dependency .dlls into, typically dependency
-
 ```
