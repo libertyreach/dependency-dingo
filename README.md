@@ -22,10 +22,10 @@ python Dingo.py -s "D:\3rdparty" "C:\Program Files\NVIDIA GPU Computing Toolkit\
 
 ```python
 import Dingo.Dingo as dingo
-dingo.search("plugins", ["D:\\3rdparty", "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v10.1\\bin"], "dependency")
+dingo.search("plugins", ["D:\\3rdparty", "C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v10.1\\bin"], "dependency", 15, True)
 ```
 ```
-usage: Dingo.py [-h] [-v] [-s SEARCH [SEARCH ...]] [--dest DEST] folder
+usage: Dingo.py [-h] [-v] [-d] [-s SEARCH [SEARCH ...]] [--dest DEST] folder
 
 positional arguments:
   folder                Plugins folder for which direct dependencies will be loaded, typically plugins folder
@@ -33,6 +33,7 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   -v                    Print verbose output (default: False)
+  -d                    Depth of search for dependency dependencies (default: 10)
   -s SEARCH [SEARCH ...]
                         Location of .dlls, typically 3rdparty folder
   --dest DEST           Folder location to copy dependency .dlls into, typically dependency
