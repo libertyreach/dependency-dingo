@@ -13,7 +13,7 @@ pip install --upgrade pip
 pip install --upgrade build 
 pip install dll-diagnostics
 python -m build
-pip install dist\Dingo-0.0.2-tar.gz
+pip install dist\Dingo-0.0.2.tar.gz
 ```
 
 ## Usage
