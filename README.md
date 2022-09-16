@@ -9,9 +9,10 @@ Given a directory to use, a list of directories to search, and a destination dir
 ```bash
 git clone https://github.com/libertyreach/dependency-dingo.git
 cd dependency-dingo
-py -m pip install --upgrade pip
-py -m pip install --upgrade build
-py -m build
+pip install --upgrade pip
+pip install --upgrade build 
+pip install dll-diagnostics
+python -m build
 pip install dist\Dingo-0.0.2-tar.gz
 ```
 
