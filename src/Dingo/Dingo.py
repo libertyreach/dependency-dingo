@@ -149,6 +149,10 @@ def main():
 
     args.folder = os.path.abspath(args.folder)
     args.dest = os.path.abspath(args.dest)
+    try: 
+        os.mkdir(args.dest) 
+    except OSError as error: 
+        pass
     tmp_search = []
     for s in itertools.chain(*args.search):
         tmp_search.append(os.path.abspath(s))
